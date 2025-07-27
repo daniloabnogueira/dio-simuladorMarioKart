@@ -103,5 +103,6 @@
 <label for="vitoria-item">Ao final, vence quem acumulou mais pontos</label>
 
 <h3>Atualização e versionamento:</h3>
+    <p>Versão 1.0: Com poucas alterações em relação ao código utilizado na explicação do desafio.</p>
 
 
