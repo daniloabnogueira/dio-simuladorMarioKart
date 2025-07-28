@@ -104,5 +104,6 @@
 
 <h3>Atualização e versionamento:</h3>
     <p>Versão 1.0: Com poucas alterações em relação ao código utilizado na explicação do desafio.</p>
+    <p>Versão 2.0: Atualizei com os pedidos feitos de incremetação extra da atividade. Atualmente Verificando possíveis bugs</p>
 
 
