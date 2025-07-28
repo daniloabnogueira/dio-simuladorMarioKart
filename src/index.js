@@ -40,6 +40,11 @@ async function logRollResult(characterName, block, diceResult, attribute) {
     console.log(`${characterName} 🎲 rolou um dado de ${block} ${diceResult} + ${attribute} = ${diceResult + attribute}`)
 }
 
+async function losingWinning() {
+    return Math.floor(Math.random()*2)
+}
+
+
 async function playRaceEngine(character1,character2){
     for(let round=1;round<=5;round++){
         console.log(`🏁 Roodada ${round}`) 
@@ -81,6 +86,8 @@ async function playRaceEngine(character1,character2){
         await logRollResult(character2.NOME, "poder", diceResult2, character2.PODER)
 
         if(powerResult1>powerResult2){
+            let vencedor = losingWinning()
+            let perdedor = losingWinning()
             if(character2.PONTOS>0){ 
                 character2.PONTOS--
                 console.log(`${character1.NOME} venceu o confronto! ${character2.NOME} perdeu 1 ponto 🐢`)
