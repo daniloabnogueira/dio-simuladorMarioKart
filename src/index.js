@@ -60,6 +60,10 @@ async function playRaceEngine(character1,character2){
     let totalTestSkill1 = 0
     let totalTestSkill2 = 0
 
+    //teste de vitoria
+    let vencedor = 0
+    let perdedor = 0
+
     if(block === "RETA") {
         totalTestSkill1 = diceResult1 + character1.VELOCIDADE
         totalTestSkill2 = diceResult2 + character2.VELOCIDADE
@@ -77,6 +81,9 @@ async function playRaceEngine(character1,character2){
     if(block === "CONFRONTO"){
         let powerResult1 = diceResult1 + character1.PODER
         let powerResult2 = diceResult2 + character2.PODER
+        vencedor = await losingWinning()
+        perdedor = await losingWinning()
+       
 
         console.log(`${character1.NOME} confrontou com ${character2.NOME}!🥊`)
 
@@ -86,18 +93,45 @@ async function playRaceEngine(character1,character2){
         await logRollResult(character2.NOME, "poder", diceResult2, character2.PODER)
 
         if(powerResult1>powerResult2){
-            let vencedor = losingWinning()
-            let perdedor = losingWinning()
-            if(character2.PONTOS>0){ 
+             
+            
+            if(character2.PONTOS>0 && perdedor == 0){ 
                 character2.PONTOS--
                 console.log(`${character1.NOME} venceu o confronto! ${character2.NOME} perdeu 1 ponto 🐢`)
+                if (vencedor == 1){
+                    console.log(`${character1.NOME} ganhou um turbo 🚀`)
+                    character1.PONTOS++
+                }
+            }
+            else if(character2.PONTOS>0 && perdedor == 1){
+                if (character2.PONTOS == 0){}
+                else if (character2.PONTOS == 1){character2.PONTOS--}
+                else {character2.PONTOS -= 2}
+                console.log(`${character1.NOME} venceu o confronto! ${character2.NOME} perdeu 2 pontos 💣`)
+                if (vencedor == 1){
+                    console.log(`${character1.NOME} ganhou turbo 🚀`)
+                }
             }
             else{console.log(`${character1.NOME} venceu o confronto!`)}
         }
         else if (powerResult2>powerResult1){
-            if(character1.PONTOS>0){
+        
+            if(character1.PONTOS>0 && perdedor == 0){
                 character1.PONTOS--
                 console.log(`${character2.NOME} venceu o confronto! ${character1.NOME} perdeu 1 ponto 🐢`)
+                if (vencedor == 1){
+                    console.log(`${character2.NOME} ganhou um turbo 🚀`)
+                    character2.PONTOS++
+                }
+            }
+            else if(character1.PONTOS>0 && perdedor == 1){
+                if (character1.PONTOS == 0){}
+                else if (character1 == 1){character1.PONTOS--}
+                else {character1.PONTOS -= 2}
+                console.log(`${character2.NOME} venceu o confronto! ${character1.NOME} perdeu 2 pontos 💣`)
+                if (vencedor == 1){
+                    console.log(`${character2.NOME} ganhou turbo 🚀`)
+                }
             }
             else{console.log(`${character2.NOME} venceu o confronto!`)}
         }
